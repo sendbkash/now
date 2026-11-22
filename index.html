@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-site-brand="warentad">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Bondio</title>
+<meta name="theme-color" content="#f7faff">
+		<link id="site-favicon" rel="icon" href="/static/bondio-v149-blue-r1/h5/logo-Bnti9Lah.webp" sizes="any">
+
+		<!--http://www.html5rocks.com/en/mobile/mobifying/-->
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,shrink-to-fit=no,viewport-fit=cover">
+
+		<!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<!-- force webkit on 360 -->
+		<meta name="renderer" content="webkit" />
+		<meta name="force-rendering" content="webkit" />
+		<!-- force edge on IE -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<style>
+				:root {
+					/* APK product theme */
+					--brand-from: #2563eb;
+					--brand-to: #3b72df;
+					--brand-gradient: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+					--brand-ink: #24334b;
+					--brand-ink-rgb: 36, 51, 75;
+					--brand-light: #edf4ff;
+					--brand-rgb: 37, 99, 235;
+					--app-canvas: #f4f9ff;
+					--app-surface: #FFFFFF;
+					--app-surface-soft: #f9fafd;
+					--app-text: #242932;
+					--app-muted: #7f848d;
+					--app-border: #e6ebf4;
+
+					--success: #10B981;
+					--success-rgb: 16, 185, 129;
+					--warning: #F97316;
+					--warning-rgb: 249, 115, 22;
+					--danger: #EF4444;
+					--danger-rgb: 239, 68, 68;
+
+					--radius-card: 20px;
+					--radius-btn: 14px;
+					--radius-control: 12px;
+					--shadow-card: 0 10px 30px rgba(51, 56, 65, 0.08);
+					--shadow-card-hover: 0 14px 36px rgba(51, 56, 65, 0.12);
+
+					/* 兼容旧变量名（值已指向新配色，逐步迁移中） */
+					--wa-green: var(--brand-from);
+					--wa-green-rgb: 37, 99, 235;
+					--wa-dark: var(--brand-ink);
+					--wa-dark-rgb: 46, 76, 129;
+					--wa-light: var(--brand-light);
+					--wa-loading-stroke: var(--brand-from);
+
+					/* Footer 专用 */
+					--footer-bg: rgba(255,255,255,.96);
+					--footer-border: #e8edf6;
+					--footer-text: #80858e;
+					--footer-active: var(--brand-from);
+					--el-color-primary: var(--brand-from) !important;
+				}
+
+			#preloader {
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				z-index: 9999999;
+				top: 0;
+				left: 0;
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+				justify-content: center
+			}
+
+			.spinner-grow {
+				display: inline-block;
+				width: 2rem;
+				height: 2rem;
+				background-color: currentColor;
+				border-radius: 50%;
+				opacity: 0;
+				animation: .75s linear infinite spinner-grow;
+				color: var(--wa-green);
+			}
+
+			@keyframes spinner-grow {
+				0% {
+					transform: scale(0)
+				}
+
+				50% {
+					opacity: 1;
+					transform: none
+				}
+			}
+		</style>
+		<style>
+			body{margin:0;background:#f4f9ff}
+			#site-skeleton{display:none}
+			body.site-booting #app{visibility:hidden}
+			body.site-booting #site-skeleton{display:block;position:fixed;inset:0;z-index:10000;overflow:auto;background:#f4f9ff;font-family:ui-sans-serif,system-ui,sans-serif}
+			.boot-wrap{width:min(calc(100% - 80px),1120px);margin-inline:auto;box-sizing:border-box}
+			.boot-header{background:#fff;border-bottom:1px solid #e6ebf4}
+			.boot-nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+			.boot-brand,.boot-actions,.boot-buttons{display:flex;align-items:center;gap:12px}
+			.boot-block{background:#e6ebf3;border-radius:8px;position:relative;overflow:hidden}
+			.boot-block::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.6) 50%,transparent 80%);transform:translateX(-100%);animation:boot-shimmer 1.8s ease-in-out infinite}
+			.boot-logo{width:40px;height:40px}.boot-name{width:120px;height:20px}.boot-language{width:132px;height:38px;border-radius:12px}.boot-account{width:90px;height:18px}
+			.boot-hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:48px;padding-block:52px 32px}
+			.boot-badge{width:130px;height:30px;margin-bottom:20px}.boot-title{width:88%;height:50px;margin-bottom:14px}.boot-title.short{width:72%;margin-bottom:28px}
+			.boot-line{width:100%;height:14px;margin-bottom:14px}.boot-line.short{width:82%}.boot-buttons{margin-top:28px}.boot-button{width:132px;height:50px;border-radius:14px}
+			.boot-art{aspect-ratio:1/1;display:grid;place-items:center;min-width:0;background:radial-gradient(ellipse,rgba(37, 99, 235,.06),transparent 70%)}
+			.boot-phone{width:44%;height:72%;border-radius:28px;background:#e6ecf7;transform:rotate(-8deg)}
+			.boot-note{width:300px;max-width:90%;height:12px;margin-bottom:34px}.boot-steps{display:flex;gap:56px;padding:36px 40px;border:1px solid #e6ebf4;border-radius:20px;background:#fff;min-height:200px}.boot-steps>div{flex:1}.boot-steps .boot-title{height:28px}
+			@keyframes boot-shimmer{to{transform:translateX(100%)}}
+			@media(max-width:760px){.boot-wrap{width:calc(100% - 40px)}.boot-nav{min-height:68px;gap:12px}.boot-logo{width:34px;height:34px}.boot-name{width:95px;height:16px}.boot-language{width:112px;height:36px}.boot-account{display:none}.boot-hero{grid-template-columns:1fr;gap:28px;padding-block:32px 24px}.boot-badge{margin-bottom:16px}.boot-title{height:36px}.boot-title.short{margin-bottom:22px}.boot-buttons{margin-top:22px}.boot-button{width:120px;height:48px}.boot-art{height:250px;aspect-ratio:auto}.boot-phone{width:104px;height:210px}.boot-note{margin-bottom:28px}.boot-steps{flex-direction:column;gap:26px;padding:26px 22px}.boot-brand{gap:8px}}
+			@media(max-width:360px){.boot-wrap{width:calc(100% - 32px)}.boot-name{width:76px}.boot-language{width:104px}.boot-art{height:220px}.boot-phone{height:185px;width:92px}}
+			@media(prefers-reduced-motion:reduce){.boot-block::after{animation:none}}
+		</style>
+		<script type="module" crossorigin src="/static/bondio-v149-blue-r1/h5/main.B0itNPvT.js"></script>
+		<link rel="stylesheet" crossorigin href="/static/bondio-v149-blue-r1/h5/main-JQ11ZYnq.css">
+	</head>
+	<body>
+		<script>
+			// Establish the browser shell before the first stylesheet/module paints.
+			if (new URLSearchParams(location.search).get('app') !== 'true' && typeof window.NativeBridge?.openWhatsApp !== 'function') {
+				document.body.classList.add('public-site');
+				if (!/^\/app\/?$/.test(location.pathname) && (!location.hash || /^#\/(?:\?|$)/.test(location.hash))) {
+					document.body.dataset.homeBoot = 'true';
+					document.body.classList.add('site-booting');
+				}
+			}
+		</script>
+		<div id="site-skeleton" role="status" aria-label="Loading" aria-busy="true">
+			<div class="boot-header" aria-hidden="true"><div class="boot-nav boot-wrap"><div class="boot-brand"><div class="boot-block boot-logo"></div><div class="boot-block boot-name"></div></div><div class="boot-actions"><div class="boot-block boot-language"></div><div class="boot-block boot-account"></div></div></div></div>
+			<div class="boot-hero boot-wrap" aria-hidden="true"><div><div class="boot-block boot-badge"></div><div class="boot-block boot-title"></div><div class="boot-block boot-title short"></div><div class="boot-block boot-line"></div><div class="boot-block boot-line short"></div><div class="boot-buttons"><div class="boot-block boot-button"></div><div class="boot-block boot-button"></div></div></div><div class="boot-art"><div class="boot-block boot-phone"></div></div></div>
+			<div class="boot-wrap" aria-hidden="true"><div class="boot-block boot-note"></div><div class="boot-steps"><div><div class="boot-block boot-title short"></div><div class="boot-block boot-line"></div></div><div><div class="boot-block boot-line"></div><div class="boot-block boot-line short"></div><div class="boot-block boot-line"></div></div></div></div>
+		</div>
+		<div id="app">
+			<div id="preloader">
+				<div class="spinner-grow"></div>
+			</div>
+		</div>
+		<script src="/static/js/skeleton-motion-v188.js?v=188.2"></script>
+	<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"73236b1025bf4cc5ad6354baa0290e6b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
